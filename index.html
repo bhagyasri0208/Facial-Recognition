@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Capture Images</title>
+</head>
+<body>
+    <h1>Capture 100 Images in 5 Seconds</h1>
+    <div>
+        <img src="/video_feed" alt="Camera Feed" width="640" height="480">
+    </div>
+    <button onclick="captureImages()">Capture Images</button>
+    <p id="status"></p>
+    <script>
+        async function captureImages() {
+            document.getElementById("status").textContent = "Capturing images...";
+            const response = await fetch("/capture_images", { method: "POST" });
+            const result = await response.json();
+            document.getElementById("status").textContent = result.message;
+        }
+    </script>
+</body>
+</html>
